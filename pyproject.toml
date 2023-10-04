@@ -1,0 +1,67 @@
+[project]
+name = "my_package"
+requires-python = ">=3.10"
+authors = [
+    { "name" = "Jennifer Pollack", "email" = "jennifer.pollack@cea.fr"},
+]
+maintainers = [
+    { "name" = "Jennifer Pollack", "email" = "jennifer.pollack@cea.fr" },
+]
+description = 'This is a package that has a dummy divide function.'
+dependencies = [
+    "numpy>=1.19",
+    "matplotlib",
+    "scipy",
+]
+version = "1.0.0"
+
+[project.optional-dependencies]
+docs = [
+    "importlib_metadata",    
+    "myst-parser",
+    "numpydoc",
+    "sphinx",
+    "sphinxcontrib-bibtex",
+    "sphinxawesome-theme",
+    "sphinx-gallery",
+]
+
+lint = [
+    "black",
+]
+release = [
+    "build",
+    "twine",
+]
+test = [
+  "pytest",
+  "pytest-black",
+  "pytest-cases",
+  "pytest-cov",
+  "pytest-emoji",
+  "pytest-pydocstyle",
+  "pytest-raises",
+  "pytest-xdist",
+]
+
+
+# Install for development
+dev = ["my_package[docs,lint,release,test]"]
+
+[tool.black]
+line-length = 88
+
+[tool.pydocstyle]
+convention = "numpy"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--verbose",
+    "--black",
+    "--emoji",
+    "--pydocstyle",
+    "--cov=mypack",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--junitxml=pytest.xml",
+]
